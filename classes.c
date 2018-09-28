@@ -1,152 +1,42 @@
+#define max_missions_in_day 5
+#define max_actions_in_mission 5
+#define max_days_in_phase 5
 enum attr {sanity, money, energy, wisdom};
 
 struct action {
-  // Texto que aparece nessa opção
-  char defition[];
+// Array das mudanças que ocorrerão nos atributos do
+// jogador caso ele faça essa ação
+int changes[4];
 
-  // Array das mudanças que ocorrerão nos atributos do
-  // jogador caso ele faça essa ação
-  int changes[4];
+// Texto que aparece nessa opção
+char definition[255];
 
-  // 
-  char defition[];
-}
+// Mensagem que vai aparecer depois dele escolher essa ação
+char consequence[255];
+};
 
 struct mission {
-  // Texto sobre a Missao
-  char defition[];
-
-  int action_count;
-  action *actions;
-}
+    // Texto sobre a Missao
+    char definition[255];
+    int total = 0;
+    int capacity;
+    action actions[max_actions_in_mission];
+};
 
 struct day {
-  // Titulo ao iniciar o dia
-  char defition[];
+    // Titulo ao iniciar o dia
+    char definition[255];
 
-  int mission_count;
-  mission *missions;
+    int total = 0;
+    int capacity;
+    mission missions[max_missions_in_day];
 
-  // Texto que aparece ao finalizar o dia
-  char defition[];
-}
+    // Texto que aparece ao finalizar o dia
+    char consequence[255];
+};
 
-struct fase {
-  int day_count;
-  day *days;
-}
-
-void main() {
-
-  /////////////////////////////////////////////////////////////////////
-
-  //                        DIA 1                                    //
-
-  /////////////////////////////////////////////////////////////////////
-
-  day day1 = day();
-  // Titulo: Semana Fera.
-
-  mission mission1 = mission();
-  // Definicao: Ao iniciar o Curso, todos tem que passar pelo processo
-  //            de montagem de grade. Desse modo, decida quais cadeiras
-  //            escolher.
-
-  action action1 = action();
-  // Acoes: a) FMCC1, P1, LP1, IC, LPT
-  //        b) Vet, Direito, InfoSoc, Adm, LPT
-  //        c) FMCC1, P1, LP1, IC, LPT, AA
-
-  // Resultados: a) Aluno Padrao
-  //             b) Aluno Easy
-  //             c) Aluno Competitivo
-
-  /////////////////////////////////////////////////////////////////////
-
-  mission mission2 = mission();
-  // Definicao: Ao iniciar o Curso, todos tem que passar pelo processo
-  //            de montagem de grade. Desse modo, decida quais cadeiras
-  //            escolher.
-
-  action action2 = action();
-  // Acoes: a) FMCC1, P1, LP1, IC, LPT
-  //        b) Vet, Direito, InfoSoc, Adm, LPT
-  //        c) FMCC1, P1, LP1, IC, LPT, AA
-
-  // Resultados: a) Aluno Padrao
-  //             b) Aluno Easy
-  //             c) Aluno Competitivo
-
-  /////////////////////////////////////////////////////////////////////
-
-  mission mission3 = mission();
-  // Definicao: Ao iniciar o Curso, todos tem que passar pelo processo
-  //            de montagem de grade. Desse modo, decida quais cadeiras
-  //            escolher.
-
-  action action3 = action();
-  // Acoes: a) FMCC1, P1, LP1, IC, LPT
-  //        b) Vet, Direito, InfoSoc, Adm, LPT
-  //        c) FMCC1, P1, LP1, IC, LPT, AA
-
-  // Resultados: a) Aluno Padrao
-  //             b) Aluno Easy
-  //             c) Aluno Competitivo
-
-
-  /////////////////////////////////////////////////////////////////////
-
-  //                        DIA 2                                    //
-
-  /////////////////////////////////////////////////////////////////////
-
-  day day2 = day();
-  // Titulo: Semana Fera.
-
-  mission mission1 = mission();
-  // Definicao: Ao iniciar o Curso, todos tem que passar pelo processo
-  //            de montagem de grade. Desse modo, decida quais cadeiras
-  //            escolher.
-
-  action action1 = action();
-  // Acoes: a) FMCC1, P1, LP1, IC, LPT
-  //        b) Vet, Direito, InfoSoc, Adm, LPT
-  //        c) FMCC1, P1, LP1, IC, LPT, AA
-
-  // Resultados: a) Aluno Padrao
-  //             b) Aluno Easy
-  //             c) Aluno Competitivo
-
-  /////////////////////////////////////////////////////////////////////
-
-  mission mission2 = mission();
-  // Definicao: Ao iniciar o Curso, todos tem que passar pelo processo
-  //            de montagem de grade. Desse modo, decida quais cadeiras
-  //            escolher.
-
-  action action2 = action();
-  // Acoes: a) FMCC1, P1, LP1, IC, LPT
-  //        b) Vet, Direito, InfoSoc, Adm, LPT
-  //        c) FMCC1, P1, LP1, IC, LPT, AA
-
-  // Resultados: a) Aluno Padrao
-  //             b) Aluno Easy
-  //             c) Aluno Competitivo
-
-  /////////////////////////////////////////////////////////////////////
-
-  mission mission3 = mission();
-  // Definicao: Ao iniciar o Curso, todos tem que passar pelo processo
-  //            de montagem de grade. Desse modo, decida quais cadeiras
-  //            escolher.
-
-  action action3 = action();
-  // Acoes: a) FMCC1, P1, LP1, IC, LPT
-  //        b) Vet, Direito, InfoSoc, Adm, LPT
-  //        c) FMCC1, P1, LP1, IC, LPT, AA
-
-  // Resultados: a) Aluno Padrao
-  //             b) Aluno Easy
-  //             c) Aluno Competitivo
-
-}
+struct phase {
+    int total = 0;
+    int capacity;
+    day days[];
+};
