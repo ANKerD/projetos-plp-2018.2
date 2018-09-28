@@ -20,7 +20,7 @@ int readNumber(int bound){
 	return c[0]-1-'0';
 }
 
-int main() {
+int play() {
 	int day_count = 1;
 	// system ("/bin/stty raw");
 	struct game *gm = createGame(5, 80, 80, 80, 80);
@@ -78,4 +78,17 @@ int main() {
 		printf("Parabens por ter chegado ate aqui. A vida de universitario\n\t mas voce conseguiu lidar com todos os desafios dessa vida\n\t de cao e ainda conseguiu tirar um tempinho pra dar uns rolet loko\n");
 		// TODO: desenhar aquelas caras ascii fodonas
 	}
+}
+
+int main(){
+	printf("Seja bem vindo ao *Sobrevivendo a UFCG*\n");
+	printf("Será que é capaz de sobre viver a vida normal de um estudante universitario?\n");
+	int cont;
+	do{
+		play();
+		printf("Deseja jogar novamente?\n");
+		printf("1. Continuar\n");
+		printf("2. Sair\n");
+		cont = readNumber(2);
+	} while(cont == 0);
 }
