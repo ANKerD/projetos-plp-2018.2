@@ -1,9 +1,11 @@
+// #include <stdlib.h>
+// #include "classes.c"
 /*
 cria uma ação e define seus atributos,
 deixando a alocação de memória transparente
 */
-action* createAction(char[] definition, char[] consequence, int san, int mon, int enrgy, wis){
-    action *newAction = malloc(sizeof(action));
+struct action* createAction(char definition[255], char consequence[255], int san, int mon, int enrgy, int wis){
+    struct action *newAction = malloc(sizeof(struct action));
 
     newAction->definition = definition;
     newAction->consequence = consequence;
@@ -19,10 +21,11 @@ action* createAction(char[] definition, char[] consequence, int san, int mon, in
 Cria uma missão com opoes em branco
 e capacidade de n ações;
 */
-mission* createMission(char[] definition, int capacity){
-    mission *newMission = malloc(sizeof(mission));
+struct mission* createMission(char definition[255], int capacity){
+    struct mission *newMission = malloc(sizeof(struct mission));
 
     newMission->definition = definition;
+	newMission->total = 0;
     newMission->capacity = capacity;
 
     return newMission;
@@ -32,43 +35,64 @@ mission* createMission(char[] definition, int capacity){
 Cria um dia com missões em branco
 e capacidade de n missões;
 */
-day* createDay(char[] definition, char[] consequence, int capacity){
-    day *newDay = malloc(sizeof(day));
+struct day* createDay(char definition[255], char consequence[255], int capacity){
+    struct day *newDay = malloc(sizeof(struct day));
 
-    newPhase->definition = definition;
-    newPhase->capacity = capacity;
+    newDay->definition = definition;
+	newDay->total = 0;
+    newDay->capacity = capacity;
 
-    return newPhase;
+    return newDay;
 }
 
 /*
 Cria um dia com missões em branco
 e capacidade de n missões;
 */
-phase* createPhase(char[] definition, int capacity){
-    phase *newPhase = malloc(sizeof(phase));
+struct phase* createPhase(char definition[255], int capacity){
+    struct phase *newPhase = malloc(sizeof(struct phase));
 
-    newPhase->definition = definition;
+    newPhase->total = 0;
     newPhase->capacity = capacity;
 
     return newPhase;
 }
 
-void addActionToMission(mission *msn, action *act){
-	if(msn->total < ms->capacity){
+struct game* createGame(int capacity, int san, int mon, int enrgy, int wis){
+    struct game *newGame = malloc(sizeof(struct game));
+
+	newGame->capacity = capacity;
+	newGame->total = 0;
+
+	newGame->attr[sanity] = san;
+    newGame->attr[money] = mon;
+    newGame->attr[energy] = enrgy;
+    newGame->attr[wisdom] = wis;
+
+    return newGame;
+}
+
+void addActionToMission(struct mission *msn, struct action *act){
+	if(msn->total < msn->capacity){
 		msn->actions[msn->total++] = *act;
 	}
 }
 
-void addMissionToDay(day *dy, mission *msn){
+void addMissionToDay(struct day *dy, struct mission *msn){
 	if(dy->total < dy->capacity){
-		dy->actions[dy->total++] = *msn;
+		dy->missions[dy->total++] = *msn;
 	}
 }
 
-void addDayToPhase(phase *ph,day *dy){
+void addDayToPhase(struct phase *ph, struct day *dy){
 	if(ph->total < ph->capacity){
-		ph->actions[ph->total++] = *dy;
+		ph->days[ph->total++] = *dy;
+	}
+}
+
+void addPhaseToGameLoop(struct game *gm, struct phase *ph){
+	if(gm->total < gm->capacity){
+		gm->phases[gm->total++] = *ph;
 	}
 }
 /*
