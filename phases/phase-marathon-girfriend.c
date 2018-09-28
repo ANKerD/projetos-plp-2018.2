@@ -1,5 +1,5 @@
 void phase_marathon_girfriend(struct game *gm){
-	struct phase *ph = createPhase("A maratona dos sertoes", 4);
+	struct phase *ph = createPhase("A maratona dos sertoes", 2);
 
 		struct day *dy = createDay("Primeiro dia de treinos - você acorda e vai para a UFCG assistir a aula de estruturas de dados", 3);
 
@@ -41,6 +41,57 @@ void phase_marathon_girfriend(struct game *gm){
 				addActionToMission(msn, act);
 
 			addMissionToDay(dy, msn);
+
 		addDayToPhase(ph, dy);
+
+		dy = createDay("Segundo dia de treinos - você acorda e vai para a UFCG submeter roteiros de estruturas de dados", 3);
+
+			msn = createMission("Hoje eh dia de colocar todo o aprendizado adquirido em aula em pratica. Desse modo: ", 3);
+
+				act = createAction("Voce decide juntar-se a um grupo de amigos no qual\n\tsabe que sempre tem um pra ajudar", "Apesar de voce ter concluido parte do Roteiro,\n\tseus amigos puxaram otimas conversas. Termine em casa.", +1, 0, -3, +1);
+				addActionToMission(msn, act);
+
+				act = createAction("Voce decide ficar soh e programar feito louco para adiantar o maximo possivel.", "Voce ate tentou se adiantar, mas dificuldades sempre surgem quando estamos so.\n\tApesar da frustacao, voce ja identificou possiveis erros e pode completar em casa." -5, 0, -4, +2);
+				addActionToMission(msn, act);
+
+				act = createAction("Prefiro descansar, irei pegar minha presenca e concluo em casa.", "Apesar de que voce tenha descansado, nao pode\n\treceber dicar de professores, monitor ou colegas. Boa sorte em casa.", +1, 0, +2, -2);
+				addActionToMission(msn, act);
+			
+			addMissionToDay(dy, msn);
+		
+			msn = createMission("Chegando em casa, voce esta com fome, cansado e, ainda assim,\n\tdeve submeter o Roteiro.", 4);
+
+				act = createAction("Melhor comer e descansar antes. Apos esse descanso, irei\n\tconcluir todo o Roteiro.", "Voce se alimentou bem, mas exagerou sem querer no descanso.\n\tQuando acordou, ficou louco, mas conseguiu concluir.", -6, 0, -2, +2);
+				addActionToMission(msn, act);
+
+				act = createAction("Uma boa alimentacao basta, apos concluir o roteiro eu descanso.", "Parabens, concluiu o Roteiro ate rapido.\n\tApesar disso, o cansaco foi grande e dormir sem responder ninguem foi consequencia." -1, 0, -4, +2);
+				addActionToMission(msn, act);
+
+				act = createAction("Irei dormir agora, acordo de madrugada, me alimento e programo depois.", "Foi duro acordar de madrugada, mas a estrategia rendeu.\n\tRoteiro concluido e energia bem gasta.", +1, 0, -2, +1);
+				addActionToMission(msn, act);
+
+				act = createAction("Irei dormir e comer, posso pegar o codigo com Flavio Quirino.", "Parabens, Roteiro enviado, boa pontuacao.\n\tConciencia limpa, mas dignidade pro saco.", -1, 0, +1, -6);
+				addActionToMission(msn, act);
+			
+			addMissionToDay(dy, msn);
+		
+			msn = createMission("Chegou a hora de fazer a prova de LEDA.\n\tVoce assistiu todas as aulas, mas nao se ve tao confiante, ainda mais com\n\ttoda essa apreensao da turma.", 4);
+
+				act = createAction("Irei sentar ao lado do meu amigo, ele pode me dar ajuda.\n\t'Ola velho amigo!'", "Seu amigo ate tenta lhe ajudar de alguma forma, mas nao lhe passa cola para\n\tnao se prejudicar, uma pena, sua prova foi mediana.", -3, 0, -2, +1);
+				addActionToMission(msn, act);
+
+				act = createAction("Vou procurar nem pensar muito, tou conversando bobagens com quem espera comecar a prova tambem.", "Deu sorte, conseguiu nos ultimos minutos, implementar o problema.\n\tApesar disso, o cansaco foi grande e energia foi pro saco." -2, 0, -4, +2);
+				addActionToMission(msn, act);
+
+				act = createAction("Melhor eu dar uma revisada, tem mais duas pessoas aqui olhando anotacoes tambem.", "A revisao nao ajudou muito, apesar disso, voce se dedicou e conseguiu alguns casos testes.", -1, 0, -2, +1);
+				addActionToMission(msn, act);
+
+				act = createAction("Nem pensei muito, debati rapido sobre provaveis questoes, e vamos pelo que sei.", "Deu muita sorte, passou em todos os testes.\n\tO Design nao foi o melhor, mas deu para manter acima da media.", +2, 0, -3, +2);
+				addActionToMission(msn, act);
+			
+			addMissionToDay(dy, msn);
+
+		addDayToPhase(ph, dy);
+
 	addPhaseToGameLoop(gm, ph);
 }
