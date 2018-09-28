@@ -5,7 +5,7 @@ void phase_noob_week(struct game *gm){
 
 			struct mission *msn = createMission("Ao iniciar o Curso, todos tem que passar pelo\n\tprocesso de montagem de grade. Desse modo, decida\n\tquais cadeiras escolher.", 3);
 
-				struct action *act = createAction("FMCC1, P1, LP1, IC, LPT", "Você faz o perfil de Aluno Padrao", -5, 0, +5, -5555);
+				struct action *act = createAction("FMCC1, P1, LP1, IC, LPT", "Você faz o perfil de Aluno Padrao", -5, 0, +5, +5);
 				addActionToMission(msn, act);
 
 				act = createAction("Vet, Direito, InfoSoc, Adm, LPT", "Você faz o perfil de Aluno Easy", +5, +5, 0, -5);
