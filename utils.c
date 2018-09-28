@@ -35,7 +35,7 @@ struct mission* createMission(char definition[255], int capacity){
 Cria um dia com missões em branco
 e capacidade de n missões;
 */
-struct day* createDay(char definition[255], char consequence[255], int capacity){
+struct day* createDay(char definition[255], int capacity){
     struct day *newDay = malloc(sizeof(struct day));
 
     newDay->definition = definition;
@@ -85,7 +85,9 @@ void addMissionToDay(struct day *dy, struct mission *msn){
 }
 
 void addDayToPhase(struct phase *ph, struct day *dy){
+	// printf("hi\n");
 	if(ph->total < ph->capacity){
+		// printf("erou\n");
 		ph->days[ph->total++] = *dy;
 	}
 }

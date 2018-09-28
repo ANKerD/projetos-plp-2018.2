@@ -9,21 +9,20 @@
 
 int main() {
 	struct game *gm = createGame(5, 80, 80, 80, 80);
-	addPhaseToGameLoop(gm, phase-marathon-girfriend);
+	phase_marathon_girfriend(gm);
 
-	printf("Hello World\n");
-	for(int i = 0; i < gm->capacity; i++){
-		struct phase *ph = gm->phases[i];
-		for(int j = 0; j < ph->capacity; j++){
-			struct day *dy = ph->days[j];
-			for(int k = 0; k < dy->capacity; k++){
-				struct mission *msn = dy->missions[k];
-				for(int l = 0; l < mission->capacity; l++){
-					struct action *act = msn->actions[l];
-					printf(" %s\n", act->definition);
-					printf(" %s\n", act->consequence);
+	for(int i = 0; i < gm->total; i++){
+		struct phase *ph = &gm->phases[i];
+		for(int j = 0; j < ph->total; j++){
+			struct day *dy = &ph->days[j];
+			for(int k = 0; k < dy->total; k++){
+				struct mission *msn = &dy->missions[k];
+				for(int l = 0; l < msn->total; l++){
+					struct action *act = &msn->actions[l];
+					printf("%d) %s\n", l+1, act->definition);
+					// printf(" %s\n", act->consequence);
 				}
-				getchar();
+				// getchar();
 			}
 		}
 	}
