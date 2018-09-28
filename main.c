@@ -23,6 +23,7 @@ int readNumber(int bound){
 int play() {
 	int day_count = 1;
 	// system ("/bin/stty raw");
+	system("clear");
 	struct game *gm = createGame(5, 80, 80, 80, 80);
 	phase_noob_week(gm);
 	phase_marathon_girfriend(gm);
@@ -68,6 +69,7 @@ int play() {
 					printf("\n\nA consequencia da sua decisao foi:\n\n");
 					printf("%s\n\n\n", msn->actions[option].consequence);
 					system("read -p \"pressione enter para continuar\" saindo");
+					system("clear");
 					printf("\n\n");
 				}
 
