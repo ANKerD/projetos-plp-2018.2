@@ -3,7 +3,7 @@ void phase_marathon_girfriend(struct game *gm){
 
 		struct day *dy = createDay("Primeiro dia de treinos - você acorda e vai para a UFCG assistir a aula de estruturas de dados", 3);
 
-			struct mission *msn = createMission("A aula comecou - prof. Dalbas explica a árove vermelho e preta, voce fia na duvida sobre a parte das insercoes", 3);
+			struct mission *msn = createMission("A aula comecou - prof. Dalbas explica a árove vermelho e preta, voce fica na duvida sobre a parte das insercoes", 3);
 
 				struct action *act = createAction("Levanta a mão, espera ele te notar e pergunta sobre\n\tessas regras malucas que esses russos inventaram", "Ele te nota, responde calmamente e voce entende perfeitamente", +1, 0, 0, +7);
 				addActionToMission(msn, act);
