@@ -4,7 +4,7 @@ void phase_period_ending(struct game *gm){
 
         struct day *dy = createDay("Dia 1: Reposição 1\n\tVocê dormiu demais e tem que se apressar para chegar a tempo na Uni", 1);
             
-            struct mission *msn = createMission("O dia começou (8h)\nPrimeira prova às 8h (reposição de Calculo II)\n\t Deve se concentrar na prova, pois ela influenciará na sua nota\n\tIsto é, se sair bem ajudará na prova final", 3);
+            struct mission *msn = createMission("O dia começou (8h)\nPrimeira prova às 8h (reposição de Calculo II)\n\t Devo me concentrar na prova, pois ela influenciará na sua nota\n\tIsto é, se sair bem ajudará na prova final", 3);
 
                 struct action *act = createAction("Quero primeiro tomar café e tomar um banho, assim fico novo em folha para enfrentar o dia", "Perderei tempo preparando meu café, ainda tenho que pegar o busão", 2, 0, 3, 0);
                 addActionToMission(msn, act);
