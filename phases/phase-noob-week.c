@@ -45,7 +45,9 @@ void phase_max(struct game *gm){
 
 	addDayToPhase(ph, dy);
 
-		msn = createMission("Primeiro Fim de Semana Fera se aproxima,\n\tjunto com isso, diversas propostas surgem", 3);
+	dy = createDay("Primeiro Fim de Semana Fera se aproxima.", "Apesar desse fim de semana ter passado rapido, seus objetivos continuam.", 2);
+
+		msn = createMission("Diversas propostas surgiram para esse fim de semana universitario.", 3);
 
 			act = createAction("Gustavo chamou para tomar uma com a galera, voce decide ir.", "Comecou bebendo pouco e acabou ficando ressacado no sabado,\n\tcom tempo de estudo livre apenas no domingo.", +2, -5, -1, +1);
 			addActionToMission(msn, act);
@@ -58,6 +60,19 @@ void phase_max(struct game *gm){
 
 		addMissionToDay(dy, msn);
 	
+		msn = createMission("Amanha e segunda, quais serao as prioridades dessa semana?", 3);
+
+			act = createAction("Focar nos estudos, irei expor com os colegar sobre meu resumo feito hoje.", "Sua dedicacao atraiu um amigo de sala, e ainda\n\tresultou em um bom inicio de semana.", +1, 0, -2, +2);
+			addActionToMission(msn, act);
+
+			act = createAction("Juntar uma galera pra farrear depois da prova.", "Por sorte, um desses amigos que se interessaram eh muito \n\tinteligente. E ele ja se dispos a lhe ajudar quanto a prova tambem.", +1, -1, -1, +2);
+			addActionToMission(msn, act);
+
+			act = createAction("Como a prova eh quarta, irei focar individualmente ate la.", "Como o estudo foi sozinho, voce teve algumas duvidas\n\tconseguiu tirar algumas duvidas com os colegas antes da prova, mas nao foi o suficiente.", -1, 0, -2, +1);
+			addActionToMission(msn, act);
+
+		addMissionToDay(dy, msn);
+
 	addDayToPhase(ph, dy);
 
 addPhaseToGameLoop(gm, ph);
