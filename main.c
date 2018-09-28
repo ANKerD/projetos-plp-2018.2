@@ -21,14 +21,17 @@ int readNumber(int bound){
 }
 
 int main() {
+	int day_count = 1;
 	// system ("/bin/stty raw");
 	struct game *gm = createGame(5, 80, 80, 80, 80);
 	phase_noob_week(gm);
 	phase_marathon_girfriend(gm);
+	int win = 1;
 	for(int i = 0; i < gm->total; i++){
 		struct phase *ph = &gm->phases[i];
 		for(int j = 0; j < ph->total; j++){
 			struct day *dy = &ph->days[j];
+			printf("Dia %d:\n", day_count++);
 			for(int k = 0; k < dy->total; k++){
 				struct mission *msn = &dy->missions[k];
 				printf("-------------------------------------------------------\n");
@@ -49,6 +52,7 @@ int main() {
 				if(gm->attr[sanity] < SANITY_DEATH || gm->attr[money] < MONEY_DEATH || gm->attr[energy] < ENERGY_DEATH || gm->attr[wisdom] < WISDOM_DEATH){
 					// break loops
 					i = j = k = 1e9;
+					win = 0;
 					printf("-------------------------------------------------------\n");
 					if(gm->attr[sanity] < SANITY_DEATH)
 						printf("Seus pontos de sanidade atingiram um nível muito baixo. Você\n\t enlouqueceu e acabou pulando do terceiro andar do CAA\n");
@@ -69,5 +73,9 @@ int main() {
 
 			}
 		}
+	}
+	if(win){
+		printf("Parabens por ter chegado ate aqui. A vida de universitario\n\t mas voce conseguiu lidar com todos os desafios dessa vida\n\t de cao e ainda conseguiu tirar um tempinho pra dar uns rolet loko\n");
+		// TODO: desenhar aquelas caras ascii fodonas
 	}
 }
