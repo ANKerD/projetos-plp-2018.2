@@ -53,17 +53,29 @@ phase* createPhase(char[] definition, int capacity){
 
     return newPhase;
 }
+
+void addActionToMission(mission *msn, action *act){
+	if(msn->total < ms->capacity){
+		msn->actions[msn->total++] = *act;
+	}
+}
+
+void addMissionToDay(day *dy, mission *msn){
+	if(msn->total < ms->capacity){
+		msn->actions[msn->total++] = *act;
+	}
+}
 /*
 // addActionTo
 // Exemplo
 
 cria as ações
-action a1 = createAction("Estudar 5 horas pa prova", "Voce está mais seguro ṕara fazer a prova", -1, 0, 0, +10);
-action a2 = createAction("Falar com a namorada", "seu relacionamento está mais sólido", 10, 0, 0, -2);
-action a3 = createAction("Jogar poker com os colegas", "Voce acabou de ganhar money derrotando os seus amigos", -2, 10, 0, -2);
-action a4 = createAction("Jogar poker com os colegas", "Voce acabou de perder seu inútil", -2, -5, 0, -2);
+action *a1 = createAction("Estudar 5 horas pa prova", "Voce está mais seguro ṕara fazer a prova", -1, 0, 0, +10);
+action *a2 = createAction("Falar com a namorada", "seu relacionamento está mais sólido", 10, 0, 0, -2);
+action *a3 = createAction("Jogar poker com os colegas", "Voce acabou de ganhar money derrotando os seus amigos", -2, 10, 0, -2);
+action *a4 = createAction("Jogar poker com os colegas", "Voce acabou de perder seu inútil", -2, -5, 0, -2);
 
-mission m1 = createMission("inicio da noite, o que você vai fazer dela?", 3);
+mission *m1 = createMission("inicio da noite, o que você vai fazer dela?", 3);
 
 addActionToMission(m1, a1);
 addActionToMission(m1, a2);
