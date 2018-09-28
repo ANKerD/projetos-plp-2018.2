@@ -38,5 +38,5 @@ struct day {
 struct phase {
     int total = 0;
     int capacity;
-    day days[];
+    day days[max_days_in_phase];
 };

@@ -61,8 +61,14 @@ void addActionToMission(mission *msn, action *act){
 }
 
 void addMissionToDay(day *dy, mission *msn){
-	if(msn->total < ms->capacity){
-		msn->actions[msn->total++] = *act;
+	if(dy->total < dy->capacity){
+		dy->actions[dy->total++] = *msn;
+	}
+}
+
+void addDayToPhase(phase *ph,day *dy){
+	if(ph->total < ph->capacity){
+		ph->actions[ph->total++] = *dy;
 	}
 }
 /*
