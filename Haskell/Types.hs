@@ -23,7 +23,7 @@ data Mission = Mission {
 
 data Day = Day {
     dayDefinition :: String,
-    misions :: [Mission]
+    missions :: [Mission]
 }
 
 data Phase = Phase {
