@@ -1,40 +1,7 @@
--- import "../types"
+module PhaseTutorial(phaseTutorial) where
+import Types
 
-data ChangeAttr = ChangeAttr {
-    sanity :: Int,
-    money :: Int,
-    energy :: Int,
-    wisdom :: Int
-}
-
-sumChanges :: ChangeAttr -> ChangeAttr -> ChangeAttr
-sumChanges a b = ChangeAttr (sanity a + sanity b) (money a + money b) (energy a + energy b) (wisdom a + wisdom b)
-
-data Action = Action {
-    description :: String,
-    consequence :: String,
-    changes :: ChangeAttr
-}
-
-data Mission = Mission {
-    missionDefinition :: String,
-    options :: [Action]
-}
-
-data Day = Day {
-    dayDefinition :: String,
-    missions :: [Mission]
-}
-
-data Phase = Phase {
-    days :: [Day]
-}
-
-data Game = Game {
-    phases :: [Phase]
-}
-
-ph = Phase [
+phaseTutorial = Phase [
     Day "Bem vindo a UFCG.\n Ao fim dessa etapa, começamos nossa jornada Universitaria." [
         Mission "Ao iniciar o Curso, todos tem que passar pelo\n\tprocesso de montagem de grade. Desse modo, decida\n\tquais cadeiras escolher." [
             Action "FMCC1, P1, LP1, IC, LPT" "Você faz o perfil de Aluno Padrao" (ChangeAttr (-5) 0 (5) (5)),
@@ -70,7 +37,7 @@ ph = Phase [
     ]
     ]
 
-main = do
+-- main = do
     -- putStrLn (dayDefinition (head (days ph)))
-    putStrLn (dayDefinition (head (days ph)))
+    -- putStrLn (dayDefinition (head (days ph)))
     -- print (energy (ChangeAttr 3 3 3 3))

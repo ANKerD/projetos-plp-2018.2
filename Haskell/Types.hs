@@ -1,3 +1,5 @@
+module Types where
+
 data ChangeAttr = ChangeAttr {
     sanity :: Int,
     money :: Int,
@@ -15,12 +17,12 @@ data Action = Action {
 }
 
 data Mission = Mission {
-    definition :: String,
+    missionDefinition :: String,
     options :: [Action]
 }
 
 data Day = Day {
-    definition :: String,
+    dayDefinition :: String,
     misions :: [Mission]
 }
 

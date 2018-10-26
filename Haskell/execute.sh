@@ -1,3 +1,1 @@
-ghc -o run main.hs
-echo "---------"
-./run
+ghc -o run Main.hs && ./run
