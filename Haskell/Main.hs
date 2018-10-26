@@ -27,34 +27,32 @@ endGame attr
 missionAction [] count = putStrLn ""
 missionAction (opts:other) count = do
     print count
-    putStr ". " ++ (msn)
+    putStr (". " ++ (actionDescription opts))
     missionAction other (succ count)
 
--- printMissionActionsStatements (ac:other) = do
---     putStrLn 
-
 invokeMsn msn = do
-    printMissionActionsStatements (options msn)
-    choose <- promptInt (length msn)
+    missionAction (options msn) 1
+    choose <- promptInt (length (options msn))
     putStrLn (consequence ((options msn)!!(choose-1)))
     changes ((options msn)!!(choose-1))
 
 invokeMissions [] = ChangeAttr 0 0 0 0
 invokeMissions (msn:morework) = sumChanges (invokeMsn msn) invokeMissions(morework)
 
-invokeDays [] attr = ChangeAttr 0 0 0 0
-invokeDays (day:left) attr = do
+-- invokeDays :: Day -> ChangeAttr
+invokeDays [] = ChangeAttr 0 0 0 0
+invokeDays (day:left) = do
     putStrLn (dayDefinition day)
     sumChanges (invokeMissions (missions day)) (invokeDays left)
 
-invokePhase :: Phase -> ChangeAttr -> ChangeAttr
-invokePhase ph attr = sumChanges attr (invokeDays (days ph))
+-- invokePhase :: Phase -> ChangeAttr
+invokePhase ph = invokeDays (days ph)
 
 -- Mensagem de vitoria
 invokeGame [] attr = putStrLn "Parabens por ter chegado ate aqui. A vida de universitario\n\t mas voce conseguiu lidar com todos os desafios dessa vida\n\t de cao e ainda conseguiu tirar um tempinho pra dar uns rolet loko"
 invokeGame phs attr = do
     putStrLn "9"
-    let newAttr = invokePhase (head phs) attr
+    let newAttr = sumChanges attr (invokePhase (head phs))
     let res = endGame newAttr
     if (fst res) then putStrLn (snd res)
     else invokeGame (tail phs) newAttr
