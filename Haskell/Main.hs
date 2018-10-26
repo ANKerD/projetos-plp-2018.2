@@ -25,14 +25,19 @@ endGame attr
     | otherwise = (False, "Lambda")
 
 missionAction [] count = putStrLn ""
-missionAction opts count = do
+missionAction (opts:other) count = do
     print count
     putStr ". " ++ (msn)
+    missionAction other (succ count)
 
-printMissionActionsStatements 
+-- printMissionActionsStatements (ac:other) = do
+--     putStrLn 
 
 invokeMsn msn = do
     printMissionActionsStatements (options msn)
+    choose <- promptInt (length msn)
+    putStrLn (consequence ((options msn)!!(choose-1)))
+    changes ((options msn)!!(choose-1))
 
 invokeMissions [] = ChangeAttr 0 0 0 0
 invokeMissions (msn:morework) = sumChanges (invokeMsn msn) invokeMissions(morework)
