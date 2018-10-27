@@ -11,7 +11,7 @@ sumChanges :: ChangeAttr -> ChangeAttr -> ChangeAttr
 sumChanges a b = ChangeAttr (sanity a + sanity b) (money a + money b) (energy a + energy b) (wisdom a + wisdom b)
 
 data Action = Action {
-    desciption :: String,
+    actionDescription :: String,
     consequence :: String,
     changes :: ChangeAttr
 }

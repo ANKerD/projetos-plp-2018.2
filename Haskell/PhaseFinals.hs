@@ -15,7 +15,7 @@ phaseFinals = Phase [
             Action "Vou chama-la para estudar comigo, quem sabe isso nos aproxima mais!" "Ela recusa pois já marcou de estudar com algumas amigas, mas fica feliz com o seu convite!" (ChangeAttr 5 0 0 0)
         ],
 
-        Mission "Já é noite e você está no seu quarto, a fome bate na sua porta e você decide:"" [
+        Mission "Já é noite e você está no seu quarto, a fome bate na sua porta e você decide:" [
             Action "Estou cansado porem farei comida, já que assim posso economizar mais!" "Você faz a comida, porém depois de cheio soma-se o cansaço e você pega no sono!" (ChangeAttr 0 5 (-5) 0),
             Action "De modo algum eu vou fazer comida uma hora dessas, vou é pedir no ifood isso sim!" "A comida chega depois de um tempo, estava deliciosa, só doeu um pouco na carteira!!" (ChangeAttr 0 (-10) 0 5),
             Action "Comer? comer não dá xp, eu vou estudar que vai ter aquele aulão agora!!" "Você não come de imediato mas vai ao aulão e recupera o conteúdo atrasado!" (ChangeAttr (-5) 0 (-10) 10)
