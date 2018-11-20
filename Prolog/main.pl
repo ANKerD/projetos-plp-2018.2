@@ -16,7 +16,7 @@ sanity(80).
 energy(80).
 
 % Atualiza os atributos no banco de dados...
-updateAttr([Wis, Mon, San, En]) :- 
+updateAttr([Wis, Mon, San, En|_]) :- 
 	wisdom(W), Ws is (Wis+W), asserta(wisdom(Ws)),
 	wisdom(M), Ms is (M+Mon), asserta(wisdom(Ms)),
 	wisdom(S), Sn is (San+S), asserta(wisdom(Sn)),
@@ -24,7 +24,9 @@ updateAttr([Wis, Mon, San, En]) :-
 
 prt(Des) :- write(Des), nl.
 
+main :- missions(Msn), playMissions(Msn).
 :- initialization(main).
+
 
 showActions([], _).
 showActions([acao(Txt,_,_)|T], Idx) :- 
@@ -32,21 +34,23 @@ showActions([acao(Txt,_,_)|T], Idx) :-
 	Ids is (Idx+1), 
 	showActions(T, Ids).
 
-main :- 
-	mission(Desc, Actions),
+
+playMissions([]) :- prt("End").
+playMissions([mission(Desc, Actions)|T]) :- 
 	prt(Desc),	
 	showActions(Actions, 1),
 	lerNumero(X),
 	nth0(X, Actions, acao(_, Cons, Attr)),
 	prt(Cons),
 	updateAttr(Attr),
+	playMissions(T),
 	halt.
 
-mission(
+missions([mission(
 	"Ao iniciar o Curso, todos tem que passar pelo\n\tprocesso de montagem de grade. Desse modo, decida\n\tquais cadeiras escolher.",
 	[
 		acao("FMCC1, P1, LP1, IC, LPT", "Você faz o perfil de Aluno Padrao", [-5, 0, +5, +5]),
 		acao("Vet, Direito, InfoSoc, Adm, LPT", "Você faz o perfil de Aluno Easy", [+5, +5, 0, -5]),
 		acao("FMCC1, P1, LP1, IC, LPT, AA", "Voce faz o perfil de Aluno Competitivo", [-5, 0, 0, +10])
 	]
-).
+)]).
