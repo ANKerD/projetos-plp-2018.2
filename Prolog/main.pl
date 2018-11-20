@@ -1,7 +1,7 @@
-dynamic(wisdom/1).
-dynamic(money/1).
-dynamic(sanity/1).
-dynamic(energy/1).
+dynamic(wisdom/2).
+dynamic(money/2).
+dynamic(sanity/2).
+dynamic(energy/2).
 
 % Ler de forma 0-indexado.
 lerNumero(X) :-
@@ -9,29 +9,28 @@ lerNumero(X) :-
 	X is Y-1.
 
 % Atributos do jogador.
-wisdom(80).
-money(80).
-sanity(80).
-energy(80).
+wisdom(1, 80).
+money( 1, 80).
+sanity(1, 80).
+energy(1, 80).
 
 % Atualiza os atributos no banco de dados...
-updateAttr([Wis, Mon, San, En]) :- 
-	wisdom(W), Ws is (Wis+W), asserta(wisdom(Ws)),
-	money(M),  Ms is (M+Mon), asserta(money( Ms)),
-	sanity(S), Sn is (San+S), asserta(sanity(Sn)),
-	energy(E), Eg is (En+E) , asserta(energy(Eg)).
+updateAttr([Wis, Mon, San, En], Cnt, Nms) :- 
+	Nms is (Cnt+1),
+	wisdom(Cnt, W), Ws is (Wis+W), asserta(wisdom(Nms, Ws)),
+	money(Cnt, M),  Ms is (M+Mon), asserta(money( Nms, Ms)),
+	sanity(Cnt, S), Sn is (San+S), asserta(sanity(Nms, Sn)),
+	energy(Cnt, E), Eg is (En+E) , asserta(energy(Nms, Eg)).
 
-lost :-
-	wisdom(W), W < 15;
-	money(M), M < -10;
-	sanity(S), S < 20;
-	energy(E), E < 15.
+lost(Cnt) :-
+	wisdom(Cnt, W), W < 15;
+	money(Cnt, M), M < -10;
+	sanity(Cnt, S), S < 20;
+	energy(Cnt, E), E < 15.
 
 prt(Des) :- write(Des), nl.
 
-% main :- missions(Msn), playMissions(Msn).
-% main :- prt("Foda").
-main :- lost -> prt(1); prt(2).
+main :- missions(Msn), playMissions(Msn, 1).
 
 :- initialization(main).
 
@@ -43,16 +42,18 @@ showActions([acao(Txt,_,_)|T], Idx) :-
 	showActions(T, Ids).
 
 
-playMissions([]) :- lost -> prt("Voce perdeu...") ; prt("Vencedor, parabéns").
-% playMissions([mission(Desc, Actions)|T]) :- 
-% 	% (lost() -> (prt("Voce perdeu..."),halt); true), %TODO morte por cada tipo de attributo)
-% 	prt(Desc),	
-% 	showActions(Actions, 1),
-% 	lerNumero(X),
-% 	nth0(X, Actions, acao(_, Cons, Attr)),
-% 	prt(Cons),
-% 	updateAttr(Attr),
-% 	playMissions(T).
+playMissions([], Cnt) :- lost(Cnt) -> prt("Voce perdeu...") ; prt("Vencedor, parabéns").
+playMissions([mission(Desc, Actions)|T], MsnCnt) :- 
+	(lost(MsnCnt) -> (prt("Voce perdeu..."),halt); true), %TODO morte por cada tipo de attributo)
+	format("Missão ~d: ", [MsnCnt]),
+	prt(Desc),	
+	showActions(Actions, 1),
+	lerNumero(X),
+	nth0(X, Actions, acao(_, Cons, Attr)),
+	prt(Cons),
+	updateAttr(Attr, MsnCnt, Nms),
+	% prt(Nms),
+	playMissions(T, Nms).
 
 missions(
 [
@@ -60,7 +61,7 @@ missions(
 		"Ao iniciar o Curso, todos tem que passar pelo\n\tprocesso de montagem de grade. Desse modo, decida\n\tquais cadeiras escolher.",
 		[
 			acao("FMCC1, P1, LP1, IC, LPT", "Você faz o perfil de Aluno Padrao", [-5, 0, +5, +5]),
-			acao("Vet, Direito, InfoSoc, Adm, LPT", "Você faz o perfil de Aluno Easy", [+5, +5, 0, -500]),
+			acao("Vet, Direito, InfoSoc, Adm, LPT", "Você faz o perfil de Aluno Easy", [+5, +5, 0, -5]),
 			acao("FMCC1, P1, LP1, IC, LPT, AA", "Voce faz o perfil de Aluno Competitivo", [-5, 0, 0, +10])
 		]
 	),
