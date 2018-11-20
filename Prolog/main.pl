@@ -4,23 +4,18 @@ dynamic(money/1).
 dynamic(sanity/1).
 dynamic(energy/1).
 
+% Ler de forma 0-indexado.
 lerNumero(X) :-
-	% read_line_to_codes(user_input, Z),
-	% string_to_atom(Z, A),
-	% atom_number(A, X).
 	read(Y),
 	X is Y-1.
 
+% Atributos do jogador.
 wisdom(80).
 money(80).
 sanity(80).
 energy(80).
 
-
-
-% :- wisdom(X), Y is 8+X, retract(wisdom(X)), asserta(wisdom(Y)).
-% :- wisdom(X), write(X).
-
+% Atualiza os atributos no banco de dados...
 updateAttr([Wis, Mon, San, En]) :- 
 	wisdom(W), Ws is (Wis+W), asserta(wisdom(Ws)),
 	wisdom(M), Ms is (M+Mon), asserta(wisdom(Ms)),
@@ -38,21 +33,13 @@ showActions([acao(Txt,_,_)|T], Idx) :-
 	showActions(T, Ids).
 
 main :- 
-	
 	mission(Desc, Actions),
 	prt(Desc),	
 	showActions(Actions, 1),
-	% 	member(acao(Txt, _, _), Actions) ->
-	% prt(Txt)
 	lerNumero(X),
-	% prt(X).
-	% member(acao(Txt, _, _), Actions),
-	
-	% nth0(Y, Actions, acao(Txt, Cons, Attr)),
-	% prt(Txt),
-	% prt(Cons),
-	% updateAttr(Attr),
-	% wisdom(C), prt(C).
+	nth0(X, Actions, acao(_, Cons, Attr)),
+	prt(Cons),
+	updateAttr(Attr),
 	halt.
 
 mission(
