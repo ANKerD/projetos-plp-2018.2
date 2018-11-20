@@ -1,3 +1,8 @@
+lerNumero(X) :-
+	read_line_to_codes(user_input, Z),
+	string_to_atom(Z, A),
+	atom_number(A, X).
+
 dynamic(wisdom/1).
 dynamic(money/1).
 dynamic(sanity/1).
@@ -17,24 +22,16 @@ updateAttr([Wis, Mon, San, En]) :-
 	wisdom(S), Sn is (San+S), asserta(wisdom(Sn)),
 	wisdom(E), Eg is (En+E),  asserta(wisdom(Eg)).
 
-main :- 
-	asserta(wisdom(90)),
-	wisdom(Y),
-	write(Y), nl,
-	updateAttr([12,2,2,2]),
-	wisdom(X),
-	write(X), nl.
-	
-	% wisdom(X),
-	% write(X), nl,
-	% halt.
+:- initialization(main).
 
-:- initialization(main). 
-% halt.
-% :- initialization(retract(wisdom(80))). 
+main :- lerNumero(X), Y is X+1, write(Y), nl.	
 
-[
-	acao("FMCC1, P1, LP1, IC, LPT", "Você faz o perfil de Aluno Padrao", [-5, 0, +5, +5]),
-	acao("Vet, Direito, InfoSoc, Adm, LPT", "Você faz o perfil de Aluno Easy", [+5, +5, 0, -5])
-	acao()
-].
+
+mission(
+	"Ao iniciar o Curso, todos tem que passar pelo\n\tprocesso de montagem de grade. Desse modo, decida\n\tquais cadeiras escolher.",
+	[
+		acao("FMCC1, P1, LP1, IC, LPT", "Você faz o perfil de Aluno Padrao", [-5, 0, +5, +5]),
+		acao("Vet, Direito, InfoSoc, Adm, LPT", "Você faz o perfil de Aluno Easy", [+5, +5, 0, -5]),
+		acao("FMCC1, P1, LP1, IC, LPT, AA", "Voce faz o perfil de Aluno Competitivo", [-5, 0, 0, +10])
+	]
+).
