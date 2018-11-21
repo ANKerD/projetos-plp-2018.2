@@ -41,17 +41,27 @@ showActions([acao(Txt,_,_)|T], Idx) :-
 	Ids is (Idx+1), 
 	showActions(T, Ids).
 
+imprimeDerrtora(Cnt) :-
+	prt("Fim de jogo :(\n"),
+	prt("Pela seguinte razão...\n"),
+	wisdom(Cnt, W), W < 15, prt("Voce esta estudando de maneira errada ou nao estudando \n\tde qualquer forma. suas notas cairam ao ponto em que a coordenador \n\tachou sensato te remover fisicamente do curso para\n\t abrir vaga para alguem mais dedicado\n"), halt;
+	money(Cnt, M), M < -10, prt("Voce acabou fazendo dividas demais. seu dinheiro acaou e voce \n\t acabou precisando largar a faculdade para pagar as contas \n\t com o agiota antes que ele te mate.\n"), halt;
+	sanity(Cnt, S), S < 20, prt("Seus pontos de sanidade atingiram um nível muito baixo. Você\n\t enlouqueceu e acabou pulando do terceiro andar do CAA\n"), halt;
+	energy(Cnt, E), E < 15, prt("Voce esta sem energia. Muito fraco e debilitado, \n\t acabou no hospital para se recuperar e no fim das contas\n\t perdeu esse periodo completamente"), halt,
+	prt("Voce foi humilhantemente humilhado"), halt.
 
-playMissions([], Cnt) :- lost(Cnt) -> prt("Voce perdeu...") ; prt("Vencedor, parabéns").
+playMissions([], Cnt) :- lost(Cnt) -> (imprimeDerrtora(Cnt),halt) ; prt("Parabens por ter chegado ate aqui. A vida de universitario\n\t mas voce conseguiu lidar com todos os desafios dessa vida\n\t de cao e ainda conseguiu tirar um tempinho pra dar uns rolet loko\n"),halt.
 playMissions([mission(Desc, Actions)|T], MsnCnt) :- 
-	(lost(MsnCnt) -> (prt("Voce perdeu..."),halt); true), %TODO morte por cada tipo de attributo)
-	clearChat(),
+	(lost(MsnCnt) -> (imprimeDerrtora(MsnCnt), halt); true), %TODO morte por cada tipo de attributo)
 	format("Missão ~d: ", [MsnCnt]),
 	prt(Desc),	
 	showActions(Actions, 1),
 	lerNumero(X),
 	nth0(X, Actions, acao(_, Cons, Attr)),
+	clearChat(),
+	write("Consequencia da ação passada:\n\n\t"),
 	prt(Cons),
+	nl, nl,
 	updateAttr(Attr, MsnCnt, Nms),
 	% prt(Nms),
 	playMissions(T, Nms).
@@ -228,7 +238,7 @@ missions(
 		"Você está fazendo a última prova final, porém está empacado em uma questão e agora?",
 		[
 			acao("Vou tentar fazer de qualquer jeito e correr o risco de reprovar! pelo menos serei honesto!", "Você acaba desenvolvendo mais da questão do que esperava, talvez o professor reconheça seu esforço!", [-5, 0, -5, +5]),
-			acao(Tento olhar a resposta no celular já que deixei os slides preparados por precaução...", "O Professor passa por você enquanto você olha o celular\n\t, ele aparenta ter percebido porém você esconde\n\t o celular rápido e se safa dessa vez.", [-5, 0, 0, 0]),
+			acao("Tento olhar a resposta no celular já que deixei os slides preparados por precaução...", "O Professor passa por você enquanto você olha o celular\n\t, ele aparenta ter percebido porém você esconde\n\t o celular rápido e se safa dessa vez.", [-5, 0, 0, 0]),
 			acao("Tento ver a resposta por cima do ombro de alguém do lado...", "Sua amiga de sempre estava atrás de você e percebe sua agonia\n\t, ela te passa um papel com as respostas e o professor nem desconfia\n\tdeu sorte!", [-1, 0, -2, +1])
 		]
 	),
@@ -275,5 +285,4 @@ missions(
 			acao("Fico em casa e descanso um pouco mais, assisto um desenho e ligo pro meu contatinho", "Ganho um pouco de sanidade e energia, economizo tempo e dinheiro, mas perco muito conhecimento", [1, -3, 2, -6])
 		]
 	)
-
 ]).
