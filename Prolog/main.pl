@@ -189,6 +189,91 @@ missions(
 			acao("Melhor eu dar uma revisada, tem mais duas pessoas aqui olhando anotacoes tambem.", "A revisao nao ajudou muito, apesar disso, voce se dedicou e conseguiu alguns casos testes.", [-1, 0, -2, +1]),
 			acao("Nem pensei muito, debati rapido sobre provaveis questoes, e vamos pelo que sei.", "Deu muita sorte, passou em todos os testes.\n\tO Design nao foi o melhor, mas deu para manter acima da media.", [+1, 0, -3, +1])
 		]
+	),
+
+	% Finals Phase
+	mission(
+		"Você tem uma prova do terceiro estágio de lp2, porém seu desempenho esse periodo não foi tão bom\n\t e você também tem algumas finais semana que vem. Decida o que você fará!",
+		[
+			acao("Irei fazer essa prova de qualquer modo pois devo priorizar minhas finais", "Você não foi tão bem na prova já que não estava preparado, mas certamente irá melhor nas finais!", [0 , 0, -5, 0]),
+			acao("Deixarei para repor farei semana que vem junto com as finais", "Você deixa pra repor e deixa os problemas para o seu eu do futuro!", [+5, 0, +5, -5]),
+			acao("Vou pedir conselhos pra uma amiga que estou conhecendo melhor", "A amiga em questão, diz que é melhor fazer a prova e\n\t te ajuda a se preparar com algumas dicas encima da hora!", [-5, 0, -5, +5])
+		]
+	),
+	mission(
+		"Você lembra que o final de semana está chegando e você está andando lado a lado com sua colega, você se recorda\n\t o quanto ela já te ajudou em provas passadas e como você viu ela pela primeira vez na semana do fera.\n\t O que você deseja fazer?",
+		[
+			acao("Chamarei ela para uma festa esse final de semana, para que possa conhece-la melhor!", "Ela recusa na hora, -quem pensaria em festa num momento desses!! não imaginava isso de você!-", [-5, 0, 0, 0]),
+			acao("Acho que agora não é a hora de tentar nada, temos finais semana que vem!", "Você não fala nada e vai embora, porém fica com palavras presas na garganta, isso não faz bem pra saúde!", [-5, 0, 0, +5]),
+			acao("Vou chama-la para estudar comigo, quem sabe isso nos aproxima mais!", "Ela recusa pois já marcou de estudar com algumas amigas, mas fica feliz com o seu convite!", [+5, 0, 0, 0])
+		]
+	),
+	mission(
+		"Já é noite e você está no seu quarto, a fome bate na sua porta e você decide:",
+		[
+			acao("Estou cansado porem farei comida, já que assim posso economizar mais!", "Você faz a comida, porém depois de cheio soma-se o cansaço e você pega no sono!", [0, +5, -5, 0]),
+			acao("De modo algum eu vou fazer comida uma hora dessas, vou é pedir no ifood isso sim!", "A comida chega depois de um tempo, estava deliciosa, só doeu um pouco na carteira!!", [0, -10, 0, +5]),
+			acao("Comer? comer não dá xp, eu vou estudar que vai ter aquele aulão agora!!", "Você não come de imediato mas vai ao aulão e recupera o conteúdo atrasado!", [-5, 0, -10, +10])
+		]
+	),
+	mission(
+		"Hoje você tem um dia de folga, só tem provas amanhã! o que você fará?",
+		[
+			acao("Vou chamar minha amiga de sempre pra estudar, hoje vai dar certo!", "Vocês estudam juntos e com isso vão bem nas provas!\n porém você está chateado por não aproveitar seu dia melhor!", [+2, 0, -10, +5]),
+			acao("AAAh finalmente um dia sem provas, vou dormir e jogar CS isso sim!", "Você se diverte bastante porém não estuda nada! e ainda perde o sono jogando! vai se dar mal hein...", [+5, 0, -5, -5]),
+			acao("Acho que vou sair com a galera, comemorar os resultados até agora!", "Você sai com o pessoal e se diverte bastante, porem gasta muito e não estuda nada!", [+10, -10, -5, -5])
+		]
+	),
+	mission(
+		"Você está fazendo a última prova final, porém está empacado em uma questão e agora?",
+		[
+			acao("Vou tentar fazer de qualquer jeito e correr o risco de reprovar! pelo menos serei honesto!", "Você acaba desenvolvendo mais da questão do que esperava, talvez o professor reconheça seu esforço!", [-5, 0, -5, +5]),
+			acao(Tento olhar a resposta no celular já que deixei os slides preparados por precaução...", "O Professor passa por você enquanto você olha o celular\n\t, ele aparenta ter percebido porém você esconde\n\t o celular rápido e se safa dessa vez.", [-5, 0, 0, 0]),
+			acao("Tento ver a resposta por cima do ombro de alguém do lado...", "Sua amiga de sempre estava atrás de você e percebe sua agonia\n\t, ela te passa um papel com as respostas e o professor nem desconfia\n\tdeu sorte!", [-1, 0, -2, +1])
+		]
+	),
+	mission(
+		"Você sai da prova e quando estava indo embora lembra de algo que queria fazer, o que era mesmo?",
+		[
+			acao("Vou esperar minha amiga sair da prova, hoje eu vou me declarar pra ela!", "Vocês saem e e vão andando embora, no caminho\n\tvocê a diz como se sente e ela... corresponde!\n\t Você agora está namorando com Maria Joaquina!", [6, 0, -5, 0]),
+			acao("Acho melhor ir embora, realmente preciso descansar!.", "No caminho saindo da faculdade, ela te alcança e te diz algo inesperado...\n\temocionado você corresponde seus sentimentos. \n\tVocê agora está namorando Maria Joaquina!", [6, 0, -5, 0]),
+			acao("Vou espera-la, pelo menos para agradecer por ter me dado a resposta!!", "Você agradece pela resposta e pergunta porquê ela sempre lhe ajuda\n\t, a resposta não podia te deixar mais feliz, ela gosta de você\n\t você não perde tempo e também se declara.\n\tVocê agora está namorando Maria Joaquina!", [6, 0, -5, 0])
+		]
+	),
+
+	% Last Of Course Phase
+	mission(
+		"O dia começou (8h)\nPrimeira prova às 8h (reposição de Calculo II)\n\t Devo me concentrar na prova, pois ela influenciará na sua nota\n\tIsto é, se sair bem ajudará na prova final",
+		[
+			acao("Quero primeiro tomar café e tomar um banho, assim fico novo em folha para enfrentar o dia", "Perderei tempo preparando meu café, ainda tenho que pegar o busão", [2, 0, 2, 0]),
+			acao("Vou tomar um banho rápido e comprar um café no Amarelinho", "Perderei mais dinheiro, mas assim não perco tanto tempo", [-2, -3, 1, 0]),
+			acao("Não vou tomar banho nem tomar café", "Economizo dinheiro e tempo, mas assim não despertarei meu corpo o suficiente", [-5, 0, -3, -1])
+		]
+	),
+	mission(
+		"Dia 1: Reposição 2\n\tVocê está cansado e começa a ter um ínicio de crise de ansiedade\n\tporque não achou que foi bem na prova anterior",
+		[
+			acao("Volto pra casa, tomo banho e descanso/reviso o assunto", "Perderei tempo e dinheiro (ainda terei que voltar para facul), mas me sentirei melhor para o resto do dia", [2, -4, 1, -3]),
+			acao("Vou almoçar lá em humanas e depois tirar um cochilo na quadra", "Perderei tempo e dineiro, mas me sentirei melhor", [1, -3, 1, -3]),
+			acao("Vou comprar mais café, almoçar e revisar um assunto que não lembro tão bem", "Aproveitarei meu tempo, mas perderei dinheiro e sanidade", [-6, -6, 0, 1])
+		]
+	),
+	mission(
+		"8h - Próxima prova às 10h (final de Calculo II). Preciso me se sentir melhor para a prova",
+		[
+			acao("Durante o café decido mandar uma mensagem pro contatinho da facul: 'Almoçar juntos?' e vou pra facul", "Ansiedade aumenta, ela visualizou e não respondeu", [-4, 1, 2, 0]),
+			acao("Decido tomar café na facul, no caminho encontro amigos e começo a discutir sobre a prova final", "Aumento meu conhecimento, mas perco dinheiro e energia ", [0, -5, -3, 1]),
+			acao("Faço um café e levo pra facul, apresso o passo para chegar logo na sala e revisar algo antes da prova", "Ganho pouco conecimento, economizo tempo e dineiro, mas perco energia e sanidade", [-5, 0, -5, 2])
+		]
+	),
+	mission(
+		"10h - Próxima prova às 14h (final de EDA). Preciso me se sentir melhor para a prova",
+		[
+			acao("Só faço comer e revisar o dia todo", "Ganho conhecimento, mas perco muita sanidade e energia", [-4, -1, -4, 5]),
+			acao("Durante o café converso com um amigo por telefone sobre a prova de hoje", "Ansiedade aumenta, mas economizo tempo e dinheiro, além de ganhar um pouco de conhecimento por ter tirado uma dúvida com meu colega de sala", [-4, -1, 2, 1]),
+			acao("Decido tomar café na facul, fico na biblioteca dando o gás para a última prova do semestre", "Aumento meu conhecimento, mas perco sanidade, dinheiro e energia ", [-4, -5, -4, 3]),
+			acao("Fico em casa e descanso um pouco mais, assisto um desenho e ligo pro meu contatinho", "Ganho um pouco de sanidade e energia, economizo tempo e dinheiro, mas perco muito conhecimento", [1, -3, 2, -6])
+		]
 	)
 
 ]).
